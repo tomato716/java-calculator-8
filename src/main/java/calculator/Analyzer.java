@@ -13,14 +13,25 @@ public class Analyzer {
     }
 
     private String findCustomDelimiter() {
-        if ((input.startsWith("//")) && (input.contains("\n"))) {
-            return input.substring(2, input.indexOf('\n'));
+        if ((input.startsWith("//")) && (input.contains("\\n"))) {
+            return input.substring(2, input.indexOf("\\n"));
         }
         return null;
     }
 
+    private boolean checkCustomDelimiter() {
+        if ((input.startsWith("//")) && (input.contains("\\n"))) {
+            return true;
+        }
+        return false;
+    }
+
     public List<Integer> splitString() {
-        String newInput = input.substring(input.indexOf('\n') + 1);
+        String newInput = input;
+        if (checkCustomDelimiter()) {
+            newInput = input.substring(input.indexOf("n") + 1);
+        }
+
         List<String> splitString = List.of(newInput.split(",|:|" + findCustomDelimiter()));
 
         validator.validateInput(splitString);
