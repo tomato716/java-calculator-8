@@ -13,10 +13,9 @@ public class AnalyzerTest {
     void analyzeTest() {
         String input = "//;\n1,2:3;4";
         Analyzer analyzer = new Analyzer(input);
-        List<String> newInput = analyzer.splitString();
+        List<Integer> numbers = analyzer.splitString();
 
-        String testString = "1,2,3,4";
-        assertEquals(List.of(testString.split(",")), newInput);
+        assertEquals(List.of(1, 2, 3, 4), numbers);
     }
 
     @DisplayName("0으로 시작하는 숫자가 0을 제거하고 올바르게 분리되는지")
@@ -24,9 +23,8 @@ public class AnalyzerTest {
     void startZeroNumberTest() {
         String input = "01,05:09";
         Analyzer analyzer = new Analyzer(input);
-        List<String> newInput = analyzer.splitString();
+        List<Integer> numbers = analyzer.splitString();
 
-        String testString = "1,5,9";
-        assertEquals(List.of(testString.split(",")), newInput);
+        assertEquals(List.of(1, 5, 9), numbers);
     }
 }
