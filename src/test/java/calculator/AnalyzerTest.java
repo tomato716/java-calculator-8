@@ -8,6 +8,16 @@ import org.junit.jupiter.api.Test;
 
 public class AnalyzerTest {
 
+    @DisplayName("기존 테스트 코드 형식에 맞게 테스트")
+    @Test
+    void sampleTest() {
+        String input = "//;\\n1";
+        Analyzer analyzer = new Analyzer(input, new Validator());
+        List<Integer> numbers = analyzer.splitString();
+
+        assertEquals(List.of(1), numbers);
+    }
+
     @DisplayName("커스텀 구분자 및 구분자로 분리가 잘되는지")
     @Test
     void analyzeTest() {
