@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Analyzer {
     private final String input;
+    private final Validator validator;
 
-    public Analyzer(String input) {
+    public Analyzer(String input, Validator validator) {
         this.input = input;
+        this.validator = validator;
     }
 
     private String findCustomDelimiter() {
@@ -20,6 +22,8 @@ public class Analyzer {
     public List<Integer> splitString() {
         String newInput = input.substring(input.indexOf('\n') + 1);
         List<String> splitString = List.of(newInput.split(",|:|" + findCustomDelimiter()));
+
+        validator.validateInput(splitString);
 
         return convertStringToInteger(splitString);
     }
