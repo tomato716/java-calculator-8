@@ -8,6 +8,17 @@ import org.junit.jupiter.api.Test;
 
 public class AnalyzerTest {
 
+    @DisplayName("메타 문자가 커스텀 구분자일 경우")
+    @Test
+    void metaCharTest() {
+        String input = "//+\\n1+2+3";
+
+        Analyzer analyzer = new Analyzer(input, new Validator());
+        List<Integer> numbers = analyzer.splitString();
+
+        assertEquals(List.of(1, 2, 3), numbers);
+    }
+
     @DisplayName("기존 테스트 코드 형식에 맞게 테스트")
     @Test
     void sampleTest() {
