@@ -32,11 +32,22 @@ public class Analyzer {
             newInput = input.substring(input.indexOf("n") + 1);
         }
 
-        List<String> splitString = List.of(newInput.split(",|:|" + findCustomDelimiter()));
+        String regex = findCustomDelimiter();
+        String newRegex = findMetaChar(regex);
+        List<String> splitString = List.of(newInput.split(",|:|" + newRegex));
 
         validator.validateInput(splitString);
 
         return convertStringToInteger(splitString);
+    }
+
+    private String findMetaChar(String regex) {
+        String metaChar = "^$.*+?[]{}()|\\";
+
+        if (metaChar.contains(regex)) {
+            regex = "\\" + regex;
+        }
+        return regex;
     }
 
     private List<Integer> convertStringToInteger(List<String> splitString) {
