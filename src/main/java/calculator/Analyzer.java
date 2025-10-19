@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Analyzer {
@@ -16,9 +17,22 @@ public class Analyzer {
         return null;
     }
 
-    public List<String> splitString() {
+    public List<Integer> splitString() {
         String newInput = input.substring(input.indexOf('\n') + 1);
-        return List.of(newInput.split(",|:|" + findCustomDelimiter()));
+        List<String> splitString = List.of(newInput.split(",|:|" + findCustomDelimiter()));
+
+        return convertStringToInteger(splitString);
+    }
+
+    private List<Integer> convertStringToInteger(List<String> splitString) {
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String string : splitString) {
+            int number = Integer.parseInt(string);
+            numbers.add(number);
+        }
+
+        return numbers;
     }
 
 }
