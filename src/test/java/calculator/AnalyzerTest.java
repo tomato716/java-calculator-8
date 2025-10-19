@@ -21,8 +21,8 @@ public class AnalyzerTest {
     @DisplayName("커스텀 구분자 및 구분자로 분리가 잘되는지")
     @Test
     void analyzeTest() {
-        String input = "//;\n1,2:3;4";
-        Analyzer analyzer = new Analyzer(input);
+        String input = "//;\\n1,2:3;4";
+        Analyzer analyzer = new Analyzer(input, new Validator());
         List<Integer> numbers = analyzer.splitString();
 
         assertEquals(List.of(1, 2, 3, 4), numbers);
@@ -32,7 +32,7 @@ public class AnalyzerTest {
     @Test
     void startZeroNumberTest() {
         String input = "01,05:09";
-        Analyzer analyzer = new Analyzer(input);
+        Analyzer analyzer = new Analyzer(input, new Validator());
         List<Integer> numbers = analyzer.splitString();
 
         assertEquals(List.of(1, 5, 9), numbers);
