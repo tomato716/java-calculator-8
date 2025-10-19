@@ -3,13 +3,8 @@ package calculator;
 import java.util.List;
 
 public class Validator {
-    private final List<String> splitString;
 
-    public Validator(List<String> splitString) {
-        this.splitString = splitString;
-    }
-
-    public void validateInput() {
+    public void validateInput(List<String> splitString) {
         for (String string : splitString) {
             checkNumber(string);
         }
