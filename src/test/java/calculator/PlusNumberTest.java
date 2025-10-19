@@ -9,7 +9,7 @@ public class PlusNumberTest {
 
     @Test
     void calculateTest() {
-        List<String> splitString = List.of("1", "2", "3", "4");
+        List<Integer> splitString = List.of(1, 2, 3, 4);
         PlusNumber plusNumber = new PlusNumber(splitString);
 
         int calculateResult = plusNumber.calculate();
