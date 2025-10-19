@@ -11,7 +11,7 @@ public class AnalyzerTest {
     void analyzeTest() {
         String input = "//;\n1,2:3;4";
         Analyzer analyzer = new Analyzer(input);
-        List<String> newInput = analyzer.analyze();
+        List<String> newInput = analyzer.splitString();
 
         String testString = "1,2,3,4";
         assertEquals(List.of(testString.split(",")), newInput);

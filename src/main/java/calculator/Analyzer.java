@@ -16,7 +16,7 @@ public class Analyzer {
         return null;
     }
 
-    public List<String> analyze() {
+    public List<String> splitString() {
         String newInput = input.substring(input.indexOf('\n') + 1);
         return List.of(newInput.split(",|:|" + findCustomDelimiter()));
     }
