@@ -33,8 +33,10 @@ public class Analyzer {
         }
 
         String regex = findCustomDelimiter();
-        String newRegex = findMetaChar(regex);
-        List<String> splitString = List.of(newInput.split(",|:|" + newRegex));
+        if (regex != null) {
+            regex = findMetaChar(regex);
+        }
+        List<String> splitString = List.of(newInput.split(",|:|" + regex));
 
         validator.validateInput(splitString);
 
