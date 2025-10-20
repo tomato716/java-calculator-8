@@ -46,10 +46,16 @@ public class Analyzer {
     private String findMetaChar(String regex) {
         String metaChar = "^$.*+?[]{}()|\\";
 
-        if (metaChar.contains(regex)) {
-            regex = "\\" + regex;
+        StringBuilder newRegex = new StringBuilder();
+
+        for (char c : regex.toCharArray()) {
+            if (metaChar.indexOf(c) != -1) {
+                newRegex.append("\\");
+            }
+            newRegex.append(c);
         }
-        return regex;
+
+        return newRegex.toString();
     }
 
     private List<Integer> convertStringToInteger(List<String> splitString) {
