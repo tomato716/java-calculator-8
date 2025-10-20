@@ -8,6 +8,17 @@ import org.junit.jupiter.api.Test;
 
 public class AnalyzerTest {
 
+    @DisplayName("여러 개의 문자가 커스텀 구분자일 경우")
+    @Test
+    void multiCustomDelimiter() {
+        String input = "//asd\\n1asd2asd3";
+
+        Analyzer analyzer = new Analyzer(input, new Validator());
+        List<Integer> numbers = analyzer.splitString();
+
+        assertEquals(List.of(1, 2, 3), numbers);
+    }
+
     @DisplayName("여러 개의 메타 문자가 커스텀 구분자일 경우")
     @Test
     void multiMetaCharTest() {
