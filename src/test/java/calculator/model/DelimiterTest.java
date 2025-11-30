@@ -34,4 +34,14 @@ public class DelimiterTest {
 
         assertThat(splitNumber).isEqualTo(List.of("1", "2", "3", "4"));
     }
+
+    @DisplayName("빈 문자열 입력시 빈 리스트 반환하는지 테스트")
+    @Test
+    void validateEmptyInput() {
+        String input = "";
+
+        List<String> splitNumber = delimiter.separateNumbers(input);
+
+        assertThat(splitNumber).hasSize(0);
+    }
 }
