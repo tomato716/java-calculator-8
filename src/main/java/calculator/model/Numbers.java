@@ -13,9 +13,6 @@ public class Numbers {
     private List<Integer> mapToInteger(List<String> splitNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String splitNumber : splitNumbers) {
-            if (splitNumber.isEmpty()) {
-                continue;
-            }
             Integer number = toInteger(splitNumber);
             validateNegativeNumber(number);
             numbers.add(number);

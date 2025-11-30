@@ -9,6 +9,9 @@ public class Delimiter {
     private static final Pattern CUSTOM_DELIMITER = Pattern.compile("^/{2}.\\\\n.*");
 
     public List<String> separateNumbers(String input) {
+        if (input.isEmpty()) {
+            return List.of();
+        }
         if (validateCustomDelimiter(input)) {
             String customDelimiter = findCustomDelimiter(input);
             String removeCustomDelimiterInput = input.substring(5);
