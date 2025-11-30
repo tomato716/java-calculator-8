@@ -13,7 +13,10 @@ public class Numbers {
     private List<Integer> changeNumberType(List<String> splitNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String splitNumber : splitNumbers) {
-            Integer number = isDigit(splitNumber);
+            if (splitNumber.isEmpty()) {
+                continue;
+            }
+            Integer number = toInteger(splitNumber);
             isNotNegativeNumber(number);
             numbers.add(number);
         }
@@ -21,7 +24,7 @@ public class Numbers {
         return numbers;
     }
 
-    private Integer isDigit(String inputNumber) {
+    private Integer toInteger(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
