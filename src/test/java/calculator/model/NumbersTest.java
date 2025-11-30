@@ -21,7 +21,7 @@ public class NumbersTest {
 
     @DisplayName("음수값을 입력할 경우 예외 발생하는지 테스트")
     @Test
-    public void isNotNegativeNumber() {
+    public void validateNegativeNumber() {
         assertThatThrownBy(() -> new Numbers(List.of("-1", "2", "3")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
