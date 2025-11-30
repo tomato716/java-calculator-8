@@ -7,17 +7,17 @@ public class Numbers {
     private final List<Integer> digitNumbers;
 
     public Numbers(List<String> numbers) {
-        this.digitNumbers = changeNumberType(numbers);
+        this.digitNumbers = mapToInteger(numbers);
     }
 
-    private List<Integer> changeNumberType(List<String> splitNumbers) {
+    private List<Integer> mapToInteger(List<String> splitNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String splitNumber : splitNumbers) {
             if (splitNumber.isEmpty()) {
                 continue;
             }
             Integer number = toInteger(splitNumber);
-            isNotNegativeNumber(number);
+            validateNegativeNumber(number);
             numbers.add(number);
         }
 
@@ -32,7 +32,7 @@ public class Numbers {
         }
     }
 
-    private void isNotNegativeNumber(int number) {
+    private void validateNegativeNumber(int number) {
         if (number < 0) {
             throw new IllegalArgumentException("[ERROR] 음수값은 입력할 수 없습니다.");
         }
