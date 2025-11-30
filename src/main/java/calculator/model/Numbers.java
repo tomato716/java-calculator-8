@@ -24,7 +24,7 @@ public class Numbers {
     private Integer isDigit(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력 문자열이 숫자가 아닙니다.");
         }
     }
