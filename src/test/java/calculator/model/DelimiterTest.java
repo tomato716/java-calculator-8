@@ -44,4 +44,14 @@ public class DelimiterTest {
 
         assertThat(splitNumber).hasSize(0);
     }
+
+    @DisplayName("커스텀 구분자가 여러 문자일 경우 테스트")
+    @Test
+    void multipleSeparators() {
+        String input = "//abs\\n1abs2abs3abs4";
+
+        List<String> splitNumber = delimiter.split(input);
+
+        assertThat(splitNumber).isEqualTo(List.of("1", "2", "3", "4"));
+    }
 }
