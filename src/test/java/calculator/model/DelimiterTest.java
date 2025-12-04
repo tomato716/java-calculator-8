@@ -20,7 +20,7 @@ public class DelimiterTest {
     void correctSeparateNumbers() {
         String input = "1,2:3";
 
-        List<String> splitNumber = delimiter.separateNumbers(input);
+        List<String> splitNumber = delimiter.split(input);
 
         assertThat(splitNumber).isEqualTo(List.of("1", "2", "3"));
     }
@@ -30,7 +30,7 @@ public class DelimiterTest {
     void correctSeparateCustomDelimiter() {
         String input = "//;\\n1,2:3;4";
 
-        List<String> splitNumber = delimiter.separateNumbers(input);
+        List<String> splitNumber = delimiter.split(input);
 
         assertThat(splitNumber).isEqualTo(List.of("1", "2", "3", "4"));
     }
@@ -40,7 +40,7 @@ public class DelimiterTest {
     void validateEmptyInput() {
         String input = "";
 
-        List<String> splitNumber = delimiter.separateNumbers(input);
+        List<String> splitNumber = delimiter.split(input);
 
         assertThat(splitNumber).hasSize(0);
     }
