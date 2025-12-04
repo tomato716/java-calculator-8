@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class Delimiter {
     private static final String COMMA = ",";
     private static final String COLON = ":";
-    private static final Pattern CUSTOM_DELIMITER = Pattern.compile("^/{2}(.)\\\\n(.*)");
+    private static final Pattern CUSTOM_DELIMITER = Pattern.compile("^/{2}(.*?)\\\\n(.*)");
 
     public List<String> split(String input) {
         if (input.isBlank()) {
