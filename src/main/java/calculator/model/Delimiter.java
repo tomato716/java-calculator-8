@@ -12,7 +12,7 @@ public class Delimiter {
     private static final Pattern CUSTOM_DELIMITER = Pattern.compile("^/{2}.\\\\n.*");
 
     public List<String> split(String input) {
-        if (input.isEmpty()) {
+        if (input.isBlank()) {
             return List.of();
         }
         if (validateCustomDelimiter(input)) {
