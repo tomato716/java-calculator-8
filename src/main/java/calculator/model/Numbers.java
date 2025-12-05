@@ -6,17 +6,22 @@ public class Numbers {
     private final List<Integer> digitNumbers;
 
     public Numbers(List<String> numbers) {
-        this.digitNumbers = List.copyOf(convertToInts(numbers));
+        this.digitNumbers = parseAndValidateAll(numbers);
     }
 
-    private List<Integer> convertToInts(List<String> splitNumbers) {
+    private List<Integer> parseAndValidateAll(List<String> splitNumbers) {
         return splitNumbers.stream()
-                .map(this::toInteger)
-                .peek(this::validateNegativeNumber)
+                .map(this::parseAndValidate)
                 .toList();
     }
 
-    private int toInteger(String inputNumber) {
+    private int parseAndValidate(String splitNumber) {
+        int number = parseInt(splitNumber);
+        validateNegativeNumber(number);
+
+        return number;
+    }
+
     private int parseInt(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
