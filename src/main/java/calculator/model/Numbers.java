@@ -17,6 +17,7 @@ public class Numbers {
     }
 
     private int toInteger(String inputNumber) {
+    private int parseInt(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
