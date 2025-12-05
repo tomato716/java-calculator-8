@@ -1,27 +1,22 @@
 package calculator.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {
     private final List<Integer> digitNumbers;
 
     public Numbers(List<String> numbers) {
-        this.digitNumbers = mapToInteger(numbers);
+        this.digitNumbers = List.copyOf(convertToInts(numbers));
     }
 
-    private List<Integer> mapToInteger(List<String> splitNumbers) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String splitNumber : splitNumbers) {
-            Integer number = toInteger(splitNumber);
-            validateNegativeNumber(number);
-            numbers.add(number);
-        }
-
-        return numbers;
+    private List<Integer> convertToInts(List<String> splitNumbers) {
+        return splitNumbers.stream()
+                .map(this::toInteger)
+                .peek(this::validateNegativeNumber)
+                .toList();
     }
 
-    private Integer toInteger(String inputNumber) {
+    private int toInteger(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
@@ -35,12 +30,9 @@ public class Numbers {
         }
     }
 
-    public Integer calculatePlus() {
-        int totalResult = 0;
-        for (Integer number : digitNumbers) {
-            totalResult += number;
-        }
-
-        return totalResult;
+    public int calculatePlus() {
+        return digitNumbers.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
