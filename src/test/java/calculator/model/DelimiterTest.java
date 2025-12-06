@@ -6,13 +6,22 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class DelimiterTest {
     private Delimiter delimiter;
+
+    private static Stream<Arguments> splitNumbersSuccess() {
+        return Stream.of(
+                Arguments.of("1,2:3", List.of("1", "2", "3")),
+                Arguments.of("//;\\n1,2:3;4", List.of("1", "2", "3", "4")),
+                Arguments.of("//abs\\n1abs2abs3abs4", List.of("1", "2", "3", "4")),
+                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4")),
+                Arguments.of("", List.of())
+        );
+    }
 
     @BeforeEach
     void reset() {
@@ -26,15 +35,5 @@ public class DelimiterTest {
         List<String> splitNumber = delimiter.split(input);
 
         assertThat(splitNumber).containsExactlyElementsOf(expected);
-    }
-
-    private static Stream<Arguments> splitNumbersSuccess() {
-        return Stream.of(
-                Arguments.of("1,2:3", List.of("1", "2", "3")),
-                Arguments.of("//;\\n1,2:3;4", List.of("1", "2", "3", "4")),
-                Arguments.of("//abs\\n1abs2abs3abs4", List.of("1", "2", "3", "4")),
-                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4")),
-                Arguments.of("", List.of())
-        );
     }
 }
