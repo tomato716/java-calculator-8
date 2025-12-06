@@ -3,15 +3,15 @@ package calculator.controller;
 import calculator.model.Delimiter;
 import calculator.model.Numbers;
 import calculator.view.InputView;
-import calculator.view.Output;
+import calculator.view.OutputView;
 import java.util.List;
 
 public class CalculatorController {
     private final InputView input;
-    private final Output output;
+    private final OutputView output;
     private final Delimiter delimiter;
 
-    public CalculatorController(InputView input, Output output, Delimiter delimiter) {
+    public CalculatorController(InputView input, OutputView output, Delimiter delimiter) {
         this.input = input;
         this.output = output;
         this.delimiter = delimiter;
