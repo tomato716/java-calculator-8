@@ -42,7 +42,7 @@ public class DelimiterTest {
 
         List<String> splitNumber = delimiter.split(input);
 
-        assertThat(splitNumber).hasSize(0);
+        assertThat(splitNumber).isEmpty();
     }
 
     @DisplayName("커스텀 구분자가 여러 문자일 경우 테스트")
