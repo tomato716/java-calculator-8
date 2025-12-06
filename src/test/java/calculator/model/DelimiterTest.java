@@ -13,16 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class DelimiterTest {
     private Delimiter delimiter;
 
-    private static Stream<Arguments> provideSplitNumbers() {
-        return Stream.of(
-                Arguments.of("1,2:3", List.of("1", "2", "3")),
-                Arguments.of("//;\\n1,2:3;4", List.of("1", "2", "3", "4")),
-                Arguments.of("//abs\\n1abs2abs3abs4", List.of("1", "2", "3", "4")),
-                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4")),
-                Arguments.of("", List.of())
-        );
-    }
-
     @BeforeEach
     void reset() {
         delimiter = new Delimiter();
@@ -35,5 +25,15 @@ class DelimiterTest {
         List<String> splitNumbers = delimiter.split(input);
 
         assertThat(splitNumbers).containsExactlyElementsOf(expected);
+    }
+
+    private static Stream<Arguments> provideSplitNumbers() {
+        return Stream.of(
+                Arguments.of("1,2:3", List.of("1", "2", "3")),
+                Arguments.of("//;\\n1,2:3;4", List.of("1", "2", "3", "4")),
+                Arguments.of("//abs\\n1abs2abs3abs4", List.of("1", "2", "3", "4")),
+                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4")),
+                Arguments.of("", List.of())
+        );
     }
 }
