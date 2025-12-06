@@ -22,7 +22,7 @@ public class DelimiterTest {
 
         List<String> splitNumber = delimiter.split(input);
 
-        assertThat(splitNumber).isEqualTo(List.of("1", "2", "3"));
+        assertThat(splitNumber).containsExactly("1", "2", "3");
     }
 
     @DisplayName("커스텀 구분자가 있을 경우 올바른 분리를 하는지 테스트")
@@ -32,7 +32,7 @@ public class DelimiterTest {
 
         List<String> splitNumber = delimiter.split(input);
 
-        assertThat(splitNumber).isEqualTo(List.of("1", "2", "3", "4"));
+        assertThat(splitNumber).containsExactly("1", "2", "3", "4");
     }
 
     @DisplayName("빈 문자열 입력시 빈 리스트 반환하는지 테스트")
@@ -52,6 +52,6 @@ public class DelimiterTest {
 
         List<String> splitNumber = delimiter.split(input);
 
-        assertThat(splitNumber).isEqualTo(List.of("1", "2", "3", "4"));
+        assertThat(splitNumber).containsExactly("1", "2", "3", "4");
     }
 }
