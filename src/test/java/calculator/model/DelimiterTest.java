@@ -33,17 +33,8 @@ public class DelimiterTest {
                 Arguments.of("1,2:3", List.of("1", "2", "3")),
                 Arguments.of("//;\\n1,2:3;4", List.of("1", "2", "3", "4")),
                 Arguments.of("//abs\\n1abs2abs3abs4", List.of("1", "2", "3", "4")),
-                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4"))
+                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4")),
+                Arguments.of("", List.of())
         );
-    }
-
-    @DisplayName("빈 문자열 입력시 빈 리스트 반환하는지 테스트")
-    @Test
-    void validateEmptyInput() {
-        String input = "";
-
-        List<String> splitNumber = delimiter.split(input);
-
-        assertThat(splitNumber).isEmpty();
     }
 }
