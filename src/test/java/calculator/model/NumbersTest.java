@@ -23,13 +23,15 @@ public class NumbersTest {
     @Test
     public void validateNegativeNumber() {
         assertThatThrownBy(() -> new Numbers(List.of("-1", "2", "3")))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 음수값은 입력할 수 없습니다.");
     }
 
     @DisplayName("숫자가 아닌 값을 입력할 경우 예외 발생하는지 테스트")
     @Test
     public void isNotDigit() {
         assertThatThrownBy(() -> new Numbers(List.of("a", "b", "3")))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 입력 문자열이 숫자가 아닙니다.");
     }
 }
