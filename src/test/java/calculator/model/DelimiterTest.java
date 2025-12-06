@@ -3,9 +3,13 @@ package calculator.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class DelimiterTest {
     private Delimiter delimiter;
@@ -16,23 +20,21 @@ public class DelimiterTest {
     }
 
     @DisplayName("구분자로 문자열 올바른 분리를 하는지 테스트")
-    @Test
-    void correctSeparateNumbers() {
-        String input = "1,2:3";
-
+    @ParameterizedTest(name = "입력 문자열 : \"{0}\" -> 결과 리스트 : {1}")
+    @MethodSource
+    void splitNumbersSuccess(String input, List<String> expected) {
         List<String> splitNumber = delimiter.split(input);
 
-        assertThat(splitNumber).containsExactly("1", "2", "3");
+        assertThat(splitNumber).containsExactlyElementsOf(expected);
     }
 
-    @DisplayName("커스텀 구분자가 있을 경우 올바른 분리를 하는지 테스트")
-    @Test
-    void correctSeparateCustomDelimiter() {
-        String input = "//;\\n1,2:3;4";
-
-        List<String> splitNumber = delimiter.split(input);
-
-        assertThat(splitNumber).containsExactly("1", "2", "3", "4");
+    private static Stream<Arguments> splitNumbersSuccess() {
+        return Stream.of(
+                Arguments.of("1,2:3", List.of("1", "2", "3")),
+                Arguments.of("//;\\n1,2:3;4", List.of("1", "2", "3", "4")),
+                Arguments.of("//abs\\n1abs2abs3abs4", List.of("1", "2", "3", "4")),
+                Arguments.of("//+\\n1+2+3+4", List.of("1", "2", "3", "4"))
+        );
     }
 
     @DisplayName("빈 문자열 입력시 빈 리스트 반환하는지 테스트")
@@ -43,15 +45,5 @@ public class DelimiterTest {
         List<String> splitNumber = delimiter.split(input);
 
         assertThat(splitNumber).isEmpty();
-    }
-
-    @DisplayName("커스텀 구분자가 여러 문자일 경우 테스트")
-    @Test
-    void multipleSeparators() {
-        String input = "//abs\\n1abs2abs3abs4";
-
-        List<String> splitNumber = delimiter.split(input);
-
-        assertThat(splitNumber).containsExactly("1", "2", "3", "4");
     }
 }
