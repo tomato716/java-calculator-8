@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class DelimiterTest {
+class DelimiterTest {
     private Delimiter delimiter;
 
     private static Stream<Arguments> provideSplitNumbers() {
