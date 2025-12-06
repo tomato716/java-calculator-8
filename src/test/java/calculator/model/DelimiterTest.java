@@ -32,8 +32,8 @@ public class DelimiterTest {
     @ParameterizedTest(name = "입력 문자열 : \"{0}\" -> 결과 리스트 : {1}")
     @MethodSource("provideSplitNumbers")
     void splitNumbersSuccess(String input, List<String> expected) {
-        List<String> splitNumber = delimiter.split(input);
+        List<String> splitNumbers = delimiter.split(input);
 
-        assertThat(splitNumber).containsExactlyElementsOf(expected);
+        assertThat(splitNumbers).containsExactlyElementsOf(expected);
     }
 }
